@@ -49,9 +49,9 @@
 
         <title>Humidity and Temperature</title>
     </head>
-    <body>
+    <body onload=display_ct();>
         <h1 style="text-align: center;">Salle 1</h1>
-        <p style="text-align: center;">Date/L'heure: <span id="datetime"></span></p>
+        <p style="text-align: center;">Date/L'heure: <span id='ct' ></span></p>
         <div id="humidity"></div>
         <div id="temperature"></div>
         <div id="coverDiv2">Humidité Relative (% HR) = <span id="HSpan"></span> <br> <br><button id="Hstream" >Start Stream</button></div>
@@ -59,258 +59,260 @@
 
 
 
-        <script> let valueInHR = "";
-            let valueInDegree = "";
+        <script> 
+            let valueInHR = "";
+let valueInDegree = "";
 
+anychart.onDocumentReady(function () {
+  let gauge = anychart.gauges.circular();
 
+  gauge
+    .fill("white")
+    .stroke(null)
+    .padding(30)
+    .margin(100)
+    .startAngle(270)
+    .sweepAngle(180);
 
-            anychart.onDocumentReady(function () {
-                var gauge = anychart.gauges.circular();
+  gauge
+    .axis()
+    .labels()
+    .padding(4)
+    .fontSize(10)
+    .position("outside")
+    .format("{%Value}%");
+  // for stream
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  let HStreamBtn = document.getElementById("Hstream");
+  let HSpan = document.getElementById("HSpan");
+  HStreamBtn.onclick = async function () {
+    for (let i = 0; (i) => 0; i++) {
+      valueInHR = Math.floor(Math.random() * (60 - 41) + 40);
+      HSpan.innerHTML = valueInHR;
+      gauge.data([valueInHR]);
+      await timer(1000);
+    }
+  };
 
-                gauge
-                        .fill("white")
-                        .stroke(null)
-                        .padding(30)
-                        .margin(100)
-                        .startAngle(270)
-                        .sweepAngle(180);
+  gauge
+    .axis()
+    .scale()
+    .minimum(0)
+    .maximum(100)
+    .ticks({ interval: 10 })
+    .minorTicks({ interval: 5 });
 
-                gauge
-                        .axis()
-                        .labels()
-                        .padding(4)
-                        .fontSize(10)
-                        .position("outside")
-                        .format("{%Value}%");
-    // for stream
-                const timer = (ms) => new Promise((res) => setTimeout(res, ms));
-                let HStreamBtn = document.getElementById("Hstream")
-                let HSpan = document.getElementById("HSpan")
-                HStreamBtn.onclick = async function () {
-                    for (let i = 0; (i) => 0; i++) {
-                        valueInHR = Math.floor(Math.random() * 99)
-                        HSpan.innerHTML = valueInHR
-                        gauge.data([valueInHR]);
-                        await timer(1000);
+  gauge
+    .axis()
+    .fill("#545f69")
+    .width(1)
+    .ticks({ type: "line", fill: "white", length: 1 });
 
-                    }
-                }
+  gauge
+    .title()
+    .useHtml(true)
+    .padding(0)
+    .fontColor("#212121")
+    .hAlign("center")
+    .margin([0, 0, 10, 0]);
 
-                gauge
-                        .axis()
-                        .scale()
-                        .minimum(0)
-                        .maximum(100)
-                        .ticks({interval: 10})
-                        .minorTicks({interval: 5});
+  gauge
+    .needle()
+    .stroke("2 #545f69")
+    .startRadius("5%")
+    .endRadius("90%")
+    .startWidth("0.1%")
+    .endWidth("0.1%")
+    .middleWidth("0.1%");
 
+  gauge.cap().radius("3%").enabled(true).fill("#545f69");
 
-                gauge
-                        .axis()
-                        .fill("#545f69")
-                        .width(1)
-                        .ticks({type: "line", fill: "white", length: 1});
+  gauge.range(0, {
+    from: 0,
+    to: 30,
+    position: "inside",
+    fill: "#dd2c00 0.4",
+    startSize: 50,
+    endSize: 50,
+    radius: 98,
+  });
 
-                gauge
-                        .title()
-                        .useHtml(true)
-                        .padding(0)
-                        .fontColor("#212121")
-                        .hAlign("center")
-                        .margin([0, 0, 10, 0]);
+  gauge.range(1, {
+    from: 30,
+    to: 70,
+    position: "inside",
+    fill: "#009900 0.4",
+    startSize: 50,
+    endSize: 50,
+    radius: 98,
+  });
 
-                gauge
-                        .needle()
-                        .stroke("2 #545f69")
-                        .startRadius("5%")
-                        .endRadius("90%")
-                        .startWidth("0.1%")
-                        .endWidth("0.1%")
-                        .middleWidth("0.1%");
+  gauge.range(2, {
+    from: 70,
+    to: 100,
+    position: "inside",
+    fill: "#dd2c00 0.4",
+    startSize: 50,
+    endSize: 50,
+    radius: 98,
+  });
 
-                gauge.cap().radius("3%").enabled(true).fill("#545f69");
+  gauge
+    .label(1)
+    .text("Mauvais")
+    .fontColor("#212121")
+    .fontSize(10)
+    .offsetY("75%")
+    .offsetX(25)
+    .anchor("center");
 
-                gauge.range(0, {
-                    from: 0,
-                    to: 30,
-                    position: "inside",
-                    fill: "#dd2c00 0.4",
-                    startSize: 50,
-                    endSize: 50,
-                    radius: 98,
-                });
+  gauge
+    .label(2)
+    .text("Bien")
+    .fontColor("#212121")
+    .fontSize(10)
+    .offsetY("68%")
+    .offsetX(90)
+    .anchor("center");
 
-                gauge.range(1, {
-                    from: 30,
-                    to: 70,
-                    position: "inside",
-                    fill: "#009900 0.4",
-                    startSize: 50,
-                    endSize: 50,
-                    radius: 98,
-                });
+  gauge
+    .label(3)
+    .text("Mauvais")
+    .fontColor("#212121")
+    .fontSize(10)
+    .offsetY("75%")
+    .offsetX(155)
+    .anchor("center");
 
-                gauge.range(2, {
-                    from: 70,
-                    to: 100,
-                    position: "inside",
-                    fill: "#dd2c00 0.4",
-                    startSize: 50,
-                    endSize: 50,
-                    radius: 98,
-                });
+  gauge.container("humidity");
 
-                gauge
-                        .label(1)
-                        .text("Mauvais")
-                        .fontColor("#212121")
-                        .fontSize(10)
-                        .offsetY("75%")
-                        .offsetX(25)
-                        .anchor("center");
+  gauge.draw();
+});
 
-                gauge
-                        .label(2)
-                        .text("Bien")
-                        .fontColor("#212121")
-                        .fontSize(10)
-                        .offsetY("68%")
-                        .offsetX(90)
-                        .anchor("center");
+//##########################
+//######Temperature#########
+//##########################
 
-                gauge
-                        .label(3)
-                        .text("Mauvais")
-                        .fontColor("#212121")
-                        .fontSize(10)
-                        .offsetY("75%")
-                        .offsetX(155)
-                        .anchor("center");
+anychart.onDocumentReady(function () {
+  let gauge = anychart.gauges.linear();
 
-                gauge.container("humidity");
+  // Create and return simple linear gauge
+  function drawLinearGauge(value) {
+    gauge.data([value]).padding("30%", 10, 50, 10);
+    gauge
+      .tooltip()
+      .useHtml(true)
+      .format(function () {
+        if (this.pointer.id()) {
+          return this.value + "&deg;" + "C";
+        }
+      });
 
-                gauge.draw();
-            });
+    // Set scale settings
+    let scale = gauge.scale();
+    scale.minimum(0);
+    scale.maximum(40);
+    scale.ticks().interval(4);
 
-    //##########################
-    //######Temperature#########
-    //##########################
+    // Set axis and axis settings
+    let axis = gauge.axis();
+    axis.scale(scale).width("0.5%").offset("-1%");
 
-            anychart.onDocumentReady(function () {
-                let gauge = anychart.gauges.linear();
+    // Set text formatter for axis labels
+    axis.labels().useHtml(true).format("{%Value}&deg;");
 
-                // Create and return simple linear gauge
-                function drawLinearGauge(value) {
-                    gauge.data([value]).padding('30%', 10, 50, 10);
-                    gauge
-                            .tooltip()
-                            .useHtml(true)
-                            .format(function () {
-                                if (this.pointer.id()) {
-                                    return this.value + "&deg;" + "C";
-                                }
-                            });
+    return gauge;
+  }
 
-                    // Set scale settings
-                    var scale = gauge.scale();
-                    scale.minimum(0);
-                    scale.maximum(40);
-                    scale.ticks().interval(4);
+  // Create simple gauge
+  let simpleGauge = drawLinearGauge(valueInDegree);
+  let simpleThermometer = simpleGauge.thermometer(0);
 
-                    // Set axis and axis settings
-                    var axis = gauge.axis();
-                    axis.scale(scale).width("0.5%").offset("-1%");
+  // button function to set temperature
+  // TBtn.onclick = function setTemperature() {
+  //   let TInputValue = document.getElementById("TInput").value;
+  //   valueInDegree = [TInputValue];
+  //   gauge.data(valueInDegree);
+  //   if (TInputValue >= 16 && TInputValue <= 24)
+  //     multiAxisThermometer.fill("green");
+  //   else if (TInputValue < 16) multiAxisThermometer.fill("blue");
+  //   else multiAxisThermometer.fill("red");
+  // };
 
-                    // Set text formatter for axis labels
-                    axis.labels().useHtml(true).format("{%Value}&deg;");
+  // Set simple thermometer settings
+  simpleThermometer
+    .name("Thermometer")
+    .id("0")
+    .fill("#64b5f6")
+    .stroke("#64b5f6");
 
-                    return gauge;
-                }
+  // Create gauge with extra axis
+  let multiAxisGauge = simpleGauge;
+  let multiAxisThermometer = multiAxisGauge.thermometer(0);
+  multiAxisThermometer.name("Thermometer").id("1");
 
-                // Create simple gauge
-                var simpleGauge = drawLinearGauge(valueInDegree);
-                var simpleThermometer = simpleGauge.thermometer(0);
+  // Add left axis with custom labels
+  let axisLeft = multiAxisGauge.axis(0);
+  axisLeft.minorTicks(true);
+  axisLeft
+    .labels()
+    .useHtml(true)
+    .format(function () {
+      if (this.value < 16) {
+        return '<span style="color: blue">' + this.value + "&deg;</span>";
+      } else if (this.value > 24) {
+        return '<span style="color: red">' + this.value + "&deg;</span>";
+      } else {
+        return '<span style="color: green;">' + this.value + "&deg;</span>";
+      }
+    });
+  //data stream
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  let TStreamBtn = document.getElementById("Tstream");
+  let TSpan = document.getElementById("TSpan");
+  TStreamBtn.onclick = async function () {
+    for (let i = 0; (i) => 0; i++) {
+      valueInDegree = Math.floor(Math.random() * 39);
+      if (valueInDegree >= 16 && valueInDegree <= 24)
+        multiAxisThermometer.fill("green");
+      else if (valueInDegree < 16) multiAxisThermometer.fill("blue");
+      else multiAxisThermometer.fill("red");
 
+      TSpan.innerHTML = valueInDegree;
 
+      gsimpleGauge = drawLinearGauge(valueInDegree);
 
-                // button function to set temperature
-                // TBtn.onclick = function setTemperature() {
-                //   let TInputValue = document.getElementById("TInput").value;
-                //   valueInDegree = [TInputValue];
-                //   gauge.data(valueInDegree);
-                //   if (TInputValue >= 16 && TInputValue <= 24)
-                //     multiAxisThermometer.fill("green");
-                //   else if (TInputValue < 16) multiAxisThermometer.fill("blue");
-                //   else multiAxisThermometer.fill("red");
-                // };
+      await timer(1000);
+    }
+  };
 
-                // Set simple thermometer settings
-                simpleThermometer
-                        .name("Thermometer")
-                        .id("0")
-                        .fill("#64b5f6")
-                        .stroke("#64b5f6");
-
-                // Create gauge with extra axis
-                var multiAxisGauge = simpleGauge;
-                var multiAxisThermometer = multiAxisGauge.thermometer(0);
-                multiAxisThermometer.name("Thermometer").id("1");
-
-                // Add left axis with custom labels
-                var axisLeft = multiAxisGauge.axis(0);
-                axisLeft.minorTicks(true);
-                axisLeft
-                        .labels()
-                        .useHtml(true)
-                        .format(function () {
-                            if (this.value < 16) {
-                                return '<span style="color: blue">' + this.value + "&deg;</span>";
-                            } else if (this.value > 24) {
-                                return '<span style="color: red">' + this.value + "&deg;</span>";
-                            } else {
-                                return '<span style="color: green;">' + this.value + "&deg;</span>";
-                            }
-                        });
-                //data stream
-                const timer = (ms) => new Promise((res) => setTimeout(res, ms));
-                let TStreamBtn = document.getElementById("Tstream");
-                let TSpan = document.getElementById("TSpan")
-                TStreamBtn.onclick = async function () {
-                    for (let i = 0; (i) => 0; i++) {
-                        valueInDegree = Math.floor(Math.random() * (39))
-                        if (valueInDegree >= 16 && valueInDegree <= 24)
-                            multiAxisThermometer.fill("green");
-                        else if (valueInDegree < 16)
-                            multiAxisThermometer.fill("blue");
-                        else
-                            multiAxisThermometer.fill("red");
-
-                        TSpan.innerHTML = valueInDegree
-
-
-                        gsimpleGauge = drawLinearGauge(valueInDegree)
-
-                        await timer(1000);
-
-
-                    }
-                }
-
-                // Draw thermometer
-                multiAxisGauge.container("temperature");
-                multiAxisGauge.draw();
-            });
-            var dt = new Date();
-           document.getElementById("datetime").innerHTML =
-  ("0" + dt.getDate()).slice(-2) +
-  "." +
-  ("0" + (dt.getMonth() + 1)).slice(-2) +
-  "." +
-  dt.getFullYear() +
-  " " +
-  ("0" + dt.getHours()).slice(-2) +
-  ":" +
-  ("0" + dt.getMinutes()).slice(-2);
+  // Draw thermometer
+  multiAxisGauge.container("temperature");
+  multiAxisGauge.draw();
+});
+function display_c(){
+  let refresh=1000; // Refresh rate in milli seconds
+  mytime=setTimeout('display_ct()',refresh)
+  }
+  
+  function display_ct() {
+    let x = new Date()
+    let month=x.getMonth()+1;
+let day=x.getDate();
+let year=x.getFullYear();
+if (month <10 ){month='0' + month;}
+if (day <10 ){day='0' + day;}
+ let x3= month+'-'+day+'-'+year;
+let hour=x.getHours();
+let minute=x.getMinutes();
+let second=x.getSeconds();
+if(hour <10 ){hour='0'+hour;}
+if(minute <10 ) {minute='0' + minute; }
+if(second<10){second='0' + second;}
+ x3 = x3 + ' ' +  hour+':'+minute+':'+second
+    document.getElementById('ct').innerHTML = x3;
+    display_c();
+     }
 
         </script>
     </body>
