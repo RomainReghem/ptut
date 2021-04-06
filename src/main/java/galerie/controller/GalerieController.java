@@ -19,10 +19,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  */
 @Controller
 @RequestMapping(path = "/capteurs")
+
 public class GalerieController {
 
     @Autowired
     private GalerieRepository dao;
+    
 
     /**
      * Affiche toutes les catégories dans la base
@@ -34,6 +36,12 @@ public class GalerieController {
     public String afficheToutesLesGaleries(Model model) {
         model.addAttribute("galeries", dao.findAll());
         return "afficheSalles";
+    }
+    
+     @GetMapping(path = "salle")
+    public String afficheLaSalle(Model model) {
+        model.addAttribute("galeries", dao.findAll());
+        return "salle";
     }
 
     /**
