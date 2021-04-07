@@ -9,65 +9,100 @@
 
         <style>
 
-            #humidity {
-                width: 550px;
-                height: 500px;
-                right: 0px;
+           .bg2{
+    border-radius: 25px;
+    background-color: #0C2340 ;
+    width: 410px;
+    height: 360px;
+    left: 69px;
+    top: 186px;
+    position: absolute;
+}
+.bg1{
+    border-radius: 25px;
+    background-color: #0C2340 ;
+    width: 410px;
+    height: 360px;
+    right: 69px;
+    top: 186px;
+    position: absolute;
+}
+body {
+ background-color:rgb(143, 143, 143);}
+    #humidity {
+      width: 550px;
+      height: 500px;
+      right: 0px;
+     
+     position:absolute; 
+     
+    }
+    #temperature {
 
-                position:absolute; 
+        width: 400px;
+        height: 500px;
+        left: 63px;
+        top: 67px;
+        position:absolute; 
+        
+    }
 
-            }
-            #temperature {
+#coverDiv1{
+    
+    color: white;
+    width: 240px;
+    height: 20px;
+    top: 204px;
+    left: 196px;
+    position:absolute; 
+}
+#coverDiv2{
+    color: white;
+    width: 357px;
+    height: 20px;
+    top: 204px;
+    right: 19px;
+    position:absolute; 
+    
+}
+#Hstream{
+    right: 211px;
+    top: 278px;
+    position: absolute;
 
-                width: 400px;
-                height: 500px;
-                left: 0px;
-                position:absolute; 
+}
+#Tstream{
+    right: 123px;
+    top: 312px;
+    position: absolute;
+}
 
-            }
-
-            #coverDiv1{
-
-                background-color: white;
-                width: 240px;
-                height: 20px;
-                top: 592px;
-                left: 156px;
-                position:absolute; 
-            }
-            #coverDiv2{
-                background-color:white;
-                width: 357px;
-                height: 20px;
-                top: 592px;
-                right: 0px;
-                position:absolute; 
-
-            }
 
         </style>
 
         <title>Humidity and Temperature</title>
     </head>
     <body onload=display_ct();>
-        <h1 style="text-align: center;">Salle 1</h1>
-        <p style="text-align: center;">Date/L'heure: <span id='ct' ></span></p>
-        <div id="humidity"></div>
-        <div id="temperature"></div>
-        <div id="coverDiv2">Humidité Relative (% HR) = <span id="HSpan"></span> <br> <br><button id="Hstream" >Start Stream</button></div>
-        <div id="coverDiv1">Temperature (°C) = <span id="TSpan"></span> <br> <br> <button id="Tstream">Start Stream</button></div>
-
+       <div class="bg1"></div>
+    <div class="bg2"></div>
+    <h1 style="text-align: center;">Salle 1</h1>
+    <p style="text-align: center;">Date/L'heure: <span id='ct' ></span></p>
+    <div id="humidity"></div>
+    <div id="temperature"></div>
+    <div id="coverDiv2">Humidité Relative (% HR) = <span id="HSpan"></span> <br><button id="Hstream" >Start Stream</button></div>
+    <div id="coverDiv1">Temperature (°C) = <span id="TSpan"></span> <button id="Tstream">Start Stream</button></div>
+    
 
 
         <script> 
-            let valueInHR = "";
+          let valueInHR = "";
 let valueInDegree = "";
 
 anychart.onDocumentReady(function () {
   let gauge = anychart.gauges.circular();
-
+gauge.background().fill("#0C2340");
   gauge
-    .fill("white")
+    .fill("#0C2340")
     .stroke(null)
     .padding(30)
     .margin(100)
@@ -160,7 +195,7 @@ anychart.onDocumentReady(function () {
   gauge
     .label(1)
     .text("Mauvais")
-    .fontColor("#212121")
+    .fontColor("grey")
     .fontSize(10)
     .offsetY("75%")
     .offsetX(25)
@@ -169,7 +204,7 @@ anychart.onDocumentReady(function () {
   gauge
     .label(2)
     .text("Bien")
-    .fontColor("#212121")
+    .fontColor("grey")
     .fontSize(10)
     .offsetY("68%")
     .offsetX(90)
@@ -178,7 +213,7 @@ anychart.onDocumentReady(function () {
   gauge
     .label(3)
     .text("Mauvais")
-    .fontColor("#212121")
+    .fontColor("grey")
     .fontSize(10)
     .offsetY("75%")
     .offsetX(155)
@@ -195,10 +230,11 @@ anychart.onDocumentReady(function () {
 
 anychart.onDocumentReady(function () {
   let gauge = anychart.gauges.linear();
+  gauge.background().fill("none");
 
   // Create and return simple linear gauge
   function drawLinearGauge(value) {
-    gauge.data([value]).padding("30%", 10, 50, 10);
+    gauge.data([value]).padding("35%", 10, 60, 20);
     gauge
       .tooltip()
       .useHtml(true)
@@ -228,16 +264,7 @@ anychart.onDocumentReady(function () {
   let simpleGauge = drawLinearGauge(valueInDegree);
   let simpleThermometer = simpleGauge.thermometer(0);
 
-  // button function to set temperature
-  // TBtn.onclick = function setTemperature() {
-  //   let TInputValue = document.getElementById("TInput").value;
-  //   valueInDegree = [TInputValue];
-  //   gauge.data(valueInDegree);
-  //   if (TInputValue >= 16 && TInputValue <= 24)
-  //     multiAxisThermometer.fill("green");
-  //   else if (TInputValue < 16) multiAxisThermometer.fill("blue");
-  //   else multiAxisThermometer.fill("red");
-  // };
+ 
 
   // Set simple thermometer settings
   simpleThermometer
@@ -313,6 +340,7 @@ if(second<10){second='0' + second;}
     document.getElementById('ct').innerHTML = x3;
     display_c();
      }
+
 
         </script>
     </body>
