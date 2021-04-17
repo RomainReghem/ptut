@@ -1,15 +1,15 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Mon application Spring Boot</title>
+        <title>Pénibilité ambiante</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" type="text/css" href="css/style.css"/>	
+        	
+        <link rel="stylesheet" type="text/css" href="css/style.css"/>
     </head>
     <body>
-        <h1>Mon application Spring Boot</h1>
-        <ul>
-            <li><a href="capteurs/show" target="_blank">Les salles</a></li>
-            <li><a href="h2-console" target="_blank">Console d'administration de la base de données H2 (URL jdbc:h2:mem:testdb)</a></li>
-        </ul>
+        <div id="container">   
+            <div id="salles" onclick="location.href='capteurs/show';"></div>
+            <div><a href="h2-console" target="_blank" id="lienbdd">bdd (URL jdbc:h2:mem:testdb)</a></div>
+        </div>
     </body>
 </html>

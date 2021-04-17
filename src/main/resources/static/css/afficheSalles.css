@@ -1,18 +1,28 @@
 
 #s1{
-    background-color:#ff9696;
+    background-image:url("/img/salle1.jpg");
+    background-position: center;
+	background-size:contain;
 }
 #s2{
-    background-color:orange;
+    background-image:url("/img/salle2.jpg");
+    background-position: center;
+	background-size:contain;
 }
 #s3{
-    background-color:#91a8cf;
+    background-image:url("/img/salle3.jpg");
+    background-position: center;
+	background-size:contain;
 }
 #s4{
-    background-color:#d2e08b
+    background-image:url("/img/salle4.jpg");
+    background-position: center;
+	background-size:contain;
 }
 #s5{
-    background-color:#9dedae;
+    background-image:url("/img/salle5.jpg");
+    background-position: center;
+	background-size:contain;
 }
 
 .salle{
@@ -32,7 +42,9 @@ a:link{
     color:black;
 }
 body{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    text-align: center;
+    font-family: Raleway, Lucida;
+    background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
 }
 
 
