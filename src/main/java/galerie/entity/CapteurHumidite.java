@@ -1,8 +1,4 @@
 package galerie.entity;
-import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
-import java.time.temporal.ChronoUnit;
 import javax.persistence.*;
 import lombok.*;
 
@@ -10,7 +6,12 @@ import lombok.*;
  *
  * @author romai
  */
+@Getter @Setter @NoArgsConstructor @ToString
+@Entity // Une entité JPA
 public class CapteurHumidite {
+    
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Integer id;
     
     private int humiditeIndex;
     

@@ -1,10 +1,10 @@
 package galerie.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import galerie.entity.Galerie;
+import galerie.entity.CapteurBruit;
 
 // This will be AUTO IMPLEMENTED by Spring 
 
-public interface GalerieRepository extends JpaRepository<Galerie, Integer> {
+public interface CapteurBruitRepository extends JpaRepository<CapteurBruit, Integer> {
 
 }

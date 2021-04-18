@@ -1,8 +1,5 @@
 package galerie.entity;
-import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
-import java.time.temporal.ChronoUnit;
+import java.io.Serializable;
 import javax.persistence.*;
 import lombok.*;
 
@@ -10,7 +7,13 @@ import lombok.*;
  *
  * @author romai
  */
-public class CapteurLumiere {
+@Getter @Setter @NoArgsConstructor @ToString
+@Entity // Une entité JPA
+public class CapteurLumiere implements Serializable {
+    
+    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    private Integer id;
+    
     
     private int lumiereIndex;
     

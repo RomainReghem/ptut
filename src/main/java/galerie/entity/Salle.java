@@ -1,11 +1,9 @@
 package galerie.entity;
-import java.time.LocalDate;
-import java.util.LinkedList;
-import java.util.List;
-import java.time.temporal.ChronoUnit;
 import javax.persistence.*;
 import lombok.*;
 
+@Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
+@Entity // Une entité JPA
 public class Salle {
     @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Integer id;
@@ -16,7 +14,7 @@ public class Salle {
     //Penibility index
     private int pIndex;
     
-   @OneToOne(mappedBy = "SalleBruit")
+  /* @OneToOne(mappedBy = "SalleBruit")
     private CapteurBruit cBruit;
     
     @OneToOne(mappedBy = "SalleHumidite")
@@ -26,6 +24,6 @@ public class Salle {
     private CapteurBruit cLum;
     
     @OneToOne(mappedBy = "SalleTemperature")
-    private CapteurBruit cTemp;
+    private CapteurBruit cTemp; */
    
 }
