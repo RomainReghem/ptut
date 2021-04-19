@@ -15,6 +15,6 @@ public class CapteurBruit {
     
     private int bruitIndex;
     
-    @OneToOne
-    private Salle SalleBruit;
+    @ManyToOne
+    Salle SalleBruit;
 }

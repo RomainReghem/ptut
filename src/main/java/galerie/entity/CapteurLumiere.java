@@ -17,6 +17,6 @@ public class CapteurLumiere implements Serializable {
     
     private int lumiereIndex;
     
-    @OneToOne
-    private Salle SalleLumiere;
+    @ManyToOne
+    Salle SalleLumiere;
 }

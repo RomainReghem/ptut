@@ -15,6 +15,6 @@ public class CapteurHumidite {
     
     private int humiditeIndex;
     
-    @OneToOne
-    private Salle SalleHumidite;
+    @ManyToOne
+    Salle SalleHumidite;
 }

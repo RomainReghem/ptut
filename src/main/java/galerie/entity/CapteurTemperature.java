@@ -14,6 +14,6 @@ public class CapteurTemperature {
     
     private int temperatureIndex;
     
-    @OneToOne
-    private Salle SalleTemperature;
+    @ManyToOne
+    Salle SalleTemperature;
 }

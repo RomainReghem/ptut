@@ -1,4 +1,6 @@
 package galerie.entity;
+import java.util.LinkedList;
+import java.util.List;
 import javax.persistence.*;
 import lombok.*;
 
@@ -14,16 +16,16 @@ public class Salle {
     //Penibility index
     private int pIndex;
     
-  /* @OneToOne(mappedBy = "SalleBruit")
-    private CapteurBruit cBruit;
+    @OneToMany(mappedBy = "SalleBruit")
+    private List<CapteurBruit> cBruit = new LinkedList<>();
     
-    @OneToOne(mappedBy = "SalleHumidite")
-    private CapteurBruit cHum;
+    @OneToMany(mappedBy = "SalleHumidite")
+    private List<CapteurHumidite> cHum = new LinkedList<>();
     
-    @OneToOne(mappedBy = "SalleLumiere")
-    private CapteurBruit cLum;
+    @OneToMany(mappedBy = "SalleLumiere")
+    private List<CapteurLumiere> cLum = new LinkedList<>();
     
-    @OneToOne(mappedBy = "SalleTemperature")
-    private CapteurBruit cTemp; */
+    @OneToMany(mappedBy = "SalleTemperature")
+    private List<CapteurTemperature> cTemp = new LinkedList<>(); 
    
 }
