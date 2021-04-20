@@ -20,15 +20,8 @@
         <div id="lightGauge"></div>
         <div id="bruit"></div>
 
-            <script th:inline="javascript"> 
-                 /*<![CDATA[*/
+            <script> 
 
-            var h = /*[[${lastHumID}]]*/ 'default';
-            console.log(h)
-            
-
-
-            /*]]>*/
     
                 let valueInHR = "";
                 let valueInDegree = "";
@@ -357,7 +350,7 @@ s();
 //##########################
 
 
-  let valueinDegree = 0
+  
   anychart.onDocumentReady(function () {
   let gauge = anychart.gauges.linear();
   gauge.background().fill("#b8d1bc");

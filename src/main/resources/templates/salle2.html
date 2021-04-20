@@ -9,6 +9,10 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-linear-gauge.min.js?hcode=c11e6e3cfefb406e8ce8d99fa8368d33"></script>
+        <script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
         <link rel="stylesheet" type="text/css" th:href="@{/css/salles.css}" href="../static/css/salles.css"/>
     </head>
     <body onload="move()">
@@ -68,17 +72,31 @@ and open the template in the editor.
             <div id="bar">test</div>
         </div>
         <p id="etat"></p>
-
+        <div id="temperature"></div>
+        <div id="coverDiv1">Temperature (°C) = <span id="TSpan"></span> </div>
+        <div id="bruit"></div>
+         <div id="coverDiv4">Bruit de salle = <span id="BSpan"></span> <br></div>
+         <div id="lightGauge"></div>
+         <div id="coverDiv3">éclairage de salle (LUX) = <span id="LSpan"></span> <br></div>
+         <div id="humidity"></div>
+         <div id="coverDiv2">Humidité Relative (% HR) = <span id="HSpan"></span> <br></div>
         <script th:inline="javascript">
+            
             /*<![CDATA[*/
 
             var index = /*[[${index}]]*/ 'default';
-            console.log(index);
-             var h = /*[[${lastHumValue}]]*/ 'default';
-            console.log(h)
+            
+         let valueInDegree = /*[[${lastTempValue}]]*/ 'default';
+         let valueInDB = /*[[${lastBruitValue}]]*/ 'default';
+         let valueInLux = /*[[${lastLumValue}]]*/ 'default';
+         let valueInHR = /*[[${lastHumValue}]]*/ 'default';
+        
+           
+           
 
 
             /*]]>*/
+            
             
             let elem = document.getElementById("bar");
             let etat = document.getElementById("etat");
@@ -122,7 +140,433 @@ and open the template in the editor.
             etat.innerHTML = "Pénibilité : Très pénible. La salle est inadéquate"
             }
             }
+//##########################
+//######Temperature#########
+//##########################
 
+
+  
+  anychart.onDocumentReady(function () {
+  let gauge = anychart.gauges.linear();
+  gauge.background().fill("#b8d1bc");
+
+  // Create and return simple linear gauge
+  function drawLinearGauge(value) {
+    gauge.data([value])
+    gauge
+      .tooltip()
+      .useHtml(true)
+      .format(function () {
+        if (this.pointer.id()) {
+          return this.value + "&deg;" + "C";
+        }
+      });
+
+    // Set scale settings
+    let scale = gauge.scale();
+    scale.minimum(0);
+    scale.maximum(40);
+    scale.ticks().interval(4);
+
+    // Set axis and axis settings
+    let axis = gauge.axis();
+    axis.scale(scale).width("0.5%").offset("-1%");
+
+    // Set text formatter for axis labels
+    axis.labels().useHtml(true).format("{%Value}&deg;");
+
+    return gauge;
+  }
+
+  // Create simple gauge
+  let simpleGauge = drawLinearGauge(valueInDegree);
+  let simpleThermometer = simpleGauge.thermometer(0);
+
+ 
+
+  // Set simple thermometer settings
+  simpleThermometer
+    .name("Thermometer")
+    .id("0")
+    .fill("#64b5f6")
+    .stroke("#64b5f6");
+
+  // Create gauge with extra axis
+  let multiAxisGauge = simpleGauge;
+  let multiAxisThermometer = multiAxisGauge.thermometer(0);
+  multiAxisThermometer.name("Thermometer").id("1");
+
+  // Add left axis with custom labels
+  let axisLeft = multiAxisGauge.axis(0);
+  axisLeft.minorTicks(true);
+  axisLeft
+    .labels()
+    .useHtml(true)
+    .format(function () {
+      if (this.value < 16) {
+        return '<span style="color: blue">' + this.value + "&deg;</span>";
+      } else if (this.value > 24) {
+        return '<span style="color: red">' + this.value + "&deg;</span>";
+      } else {
+        return '<span style="color: green;">' + this.value + "&deg;</span>";
+      }
+    });
+  //data stream
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  let TStreamBtn = document.getElementById("Tstream");
+  let TSpan = document.getElementById("TSpan");
+   async function s() {
+   
+        
+
+
+      if (valueInDegree >= 16 && valueInDegree <= 24)
+        multiAxisThermometer.fill("green");
+      else if (valueInDegree < 16) multiAxisThermometer.fill("blue");
+      else multiAxisThermometer.fill("red");
+
+      TSpan.innerHTML = valueInDegree;
+
+      gsimpleGauge = drawLinearGauge(valueInDegree);
+
+      await timer(1000);
+    
+  };
+  s();
+
+  // Draw thermometer
+  multiAxisGauge.container("temperature");
+  multiAxisGauge.draw();
+});
+
+//##########################
+//#########Bruit############
+//##########################
+
+  var gaugeRPM = anychart.gauges.circular();
+
+
+ 
+
+  gaugeRPM.label(2)
+      .text('dB')
+      .fontSize(15)
+      .offsetY('55%')
+      .offsetX(-2);
+
+  gaugeRPM.range(0).from(0).to(40).fill('green 0.2').startSize(0).endSize(10).radius(90);
+  gaugeRPM.range(1).from(40).to(100).fill('orange 0.2').startSize(10).endSize(15).radius(90);
+  gaugeRPM.range(2).from(100).to(150).fill('red 0.2').startSize(15).endSize(20).radius(90);
+
+  var axis = gaugeRPM.axis();
+  axis.scale()
+      .minimum(0)
+      .maximum(150)
+      .ticks({interval: 20})
+      .minorTicks({interval: 20});
+  axis.labels().position('outside')
+  function createMarker() {
+    var marker = gaugeRPM.marker();
+
+    marker
+      .fill('black')
+      .size(6)
+      .position('outside')
+      .type('')
+      .radius(92)
+      .stroke(null);
+  }
+
+  createMarker()
+  gaugeRPM.background().fill("#b8d1bc");
+  gaugeRPM
+    .fill("#b8d1bc")
+//data stream
+
+//  let bruitValue = document.getElementById('bruitValue').textContent
+//let bruitInt = parseInt(bruitValue)
+//console.log(bruitInt)
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+let BSpan = document.getElementById("BSpan");
+
+async function s() {
+
+//     valueinDB = bruitInt;
+//   valueInDB = Math.floor(Math.random() * (150 - 1) + 0);
+ 
+BSpan.innerHTML = valueInDB;
+  
+
+   gaugeRPM.data([valueInDB]);
+
+   await timer(1000);
+ 
+};
+s();
+
+  gaugeRPM.container("bruit");
+  gaugeRPM.draw();
+  //#################################
+  //#########    LIGHT    ##########
+  //#################################
+
+  
+  anychart.onDocumentReady(function () {
+    // set the gauge type
+    var data = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
+    var palette = anychart.palettes
+      .distinctColors()
+      .items([
+        '#FD0023',
+        '#FF3E0F',
+        '#FF7C00',
+        '#FFDC00',
+        '#BAFF01',
+        '#32FF02',
+        '#13FF80',
+        '#01F2FF',
+        '#1352FF',
+        '#5201FF',
+        '#E001FF',
+        '#FE00A3'
+      ]);
+  
+    var gauge = anychart.gauges.circular(data);
+    gauge.fill(null).stroke(null);
+  
+    function createMarker(i) {
+      var marker = gauge.marker(i);
+  
+      marker
+        .fill('grey')
+        .size(8)
+        .position('outside')
+        .type('triangle-down')
+        .radius(92)
+        .stroke(null);
+ if (valueInLux >= 200 && valueInLux <= 750)
+       marker.fill("green")
+       if((valueInLux < 200 && valueInLux >= 100) || (valueInLux > 750 && valueInLux <= 1100))
+       marker.fill("yellow")
+       if (valueInLux < 100 || valueInLux > 1100)
+       marker.fill("red")
+
+    }
+  
+    for (var i = 0; i < data.length; i++) {
+      createMarker(i);
+    }
+    
+  
+    // get range
+    var range = gauge.range();
+    range
+      .from(100)
+      .to(1500)
+      .startSize('17%')
+      .endSize('17%')
+      .radius(85)
+      .zIndex(10)
+      .fill([
+        '#000000',
+        '#999999',
+        '#bbbbbb',
+        '#ffffff',
+        '#ffffff'
+      ]);
+  
+    // axis settings
+    var axis = gauge.axis(0);
+    axis.radius(77.5).width(0.1);
+    axis.labels().useHtml(true).format('{%Value}');
+  
+    // scale settings
+    axis
+      .scale()
+      .minimum(100)
+      .maximum(1500)
+      .ticks({ interval: 100 })
+      .minorTicks({ interval: 50 });
+  
+    // ticks settings
+    axis.ticks().enabled(true).length('2').position('inside');
+  
+    // minor ticks settings
+    axis
+      .minorTicks()
+      .enabled(true)
+      .length('1.5')
+      .fill('#ddd')
+      .position('inside');
+
+
+gauge.data([valueInLux]);
+   gauge.sweepAngle(270)
+  gauge.startAngle(45)
+  gauge.margin(1)
+
+  //data stream
+//  let eclairageValue = document.getElementById('eclairageValue').textContent
+//let eclairageInt = parseInt(eclairageValue)
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+let LSpan = document.getElementById("LSpan");
+   async function s() {
+ 
+    
+LSpan.innerHTML = valueInLux;
+     
+
+      gauge.data([valueInLux]);
+
+      await timer(1000);
+    
+  };
+  s();
+   gauge.background().fill("#b8d1bc");
+  gauge
+    .fill("#b8d1bc")
+      
+  
+    // set container id for the chart
+    gauge.container('lightGauge');
+  
+    // initiate chart drawing
+    gauge.draw();
+  });
+  
+  
+  
+    //#################################
+  //#########    Humidity    ##########
+  //#################################
+  
+  anychart.onDocumentReady(function () {
+  let gauge = anychart.gauges.circular();
+gauge.background().fill("#b8d1bc");
+  gauge
+    .fill("#b8d1bc")
+    .stroke(null)
+    .startAngle(270)
+    .sweepAngle(180);
+
+  gauge
+    .axis()
+    .labels()
+    .padding(1)
+    .fontSize(10)
+    .position("outside")
+    .format("{%Value}%");
+
+  // for stream
+  const timer = (ms) => new Promise((res) => setTimeout(res, ms));
+  
+  let HSpan = document.getElementById("HSpan");
+  async function g() {
+  
+           
+      HSpan.innerHTML = valueInHR;
+      gauge.data([valueInHR]);
+      await timer(1000);
+    
+  };
+  g()
+
+  gauge
+    .axis()
+    .scale()
+    .minimum(0)
+    .maximum(100)
+    .ticks({ interval: 10 })
+    .minorTicks({ interval: 5 });
+
+  gauge
+    .axis()
+    .fill("#545f69")
+    .width(1)
+    .ticks({ type: "line", fill: "white", length: 1 });
+
+  gauge
+    .title()
+    .useHtml(true)
+    .padding(0)
+    .fontColor("#212121")
+    .hAlign("center")
+    .margin([0, 0, 10, 0]);
+
+  gauge
+    .needle()
+    .stroke("2 red")
+    .startRadius("5%")
+    .endRadius("90%")
+    .startWidth("0.1%")
+    .endWidth("0.1%")
+    .middleWidth("0.1%");
+
+  gauge.cap().radius("3%").enabled(true).fill("#545f69");
+
+  gauge.range(0, {
+    from: 0,
+    to: 30,
+    position: "inside",
+    fill: "#dd2c00 0.4",
+    startSize: 50,
+    endSize: 50,
+    radius: 98,
+  });
+
+  gauge.range(1, {
+    from: 30,
+    to: 70,
+    position: "inside",
+    fill: "#009900 0.4",
+    startSize: 50,
+    endSize: 50,
+    radius: 98,
+  });
+
+  gauge.range(2, {
+    from: 70,
+    to: 100,
+    position: "inside",
+    fill: "#dd2c00 0.4",
+    startSize: 50,
+    endSize: 50,
+    radius: 98,
+  });
+
+  gauge
+    .label(1)
+    .text("Mauvais")
+    .fontColor("grey")
+    .fontSize(10)
+    .offsetY("75%")
+    .offsetX(25)
+    .anchor("center");
+
+  gauge
+    .label(2)
+    .text("Bien")
+    .fontColor("grey")
+    .fontSize(10)
+    .offsetY("68%")
+    .offsetX(90)
+    .anchor("center");
+
+  gauge
+    .label(3)
+    .text("Mauvais")
+    .fontColor("grey")
+    .fontSize(10)
+    .offsetY("75%")
+    .offsetX(155)
+    .anchor("center");
+
+  gauge.container("humidity");
+
+  gauge.draw();
+});
+  
+  
         </script>
     </body>
 </html>

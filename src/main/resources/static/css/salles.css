@@ -81,35 +81,32 @@ th.unite{
 
 #bruit {
 
-    width: 298px;
+  width: 298px;
     height: 278px;
-    left: 30px;
-    top: 30px;
-   
-   position:absolute; 
+        right: 30px;
+        bottom: -91px;
+        position:absolute; 
 }
 #lightGauge {
-    width: 298px;
+   width: 298px;
     height: 278px;
-    right: 30px;
-    top: 30px;
-   
-   position:absolute; 
+        left: 30px;
+        bottom: -460px;
+        position:absolute; 
 }
  #humidity {
     width: 298px;
     height: 278px;
-      right: 30px;
-      bottom: 30px;
-     
-     position:absolute; 
+        right: 30px;
+        bottom: -460px;
+        position:absolute; 
      
     }
       #temperature {
 width: 298px;
     height: 278px;
         left: 30px;
-        bottom: 30px;
+        bottom: -91px;
         position:absolute; 
         
     }
@@ -118,30 +115,27 @@ width: 298px;
     
     width: 240px;
     height: 20px;
-    bottom: 346px;
+    bottom: 204px;
     left: 57px;
     position:absolute; }
      #coverDiv2{
-    
-    
+         
     width: 240px;
     height: 20px;
-    bottom: 346px;
+    bottom: -158px;
     right: 57px;
     position:absolute; }
       #coverDiv3{
-    
-    
     width: 240px;
     height: 20px;
-    top: 10px;
-    right: 55px;
+    bottom: -158px;
+    left: 57px;
     position:absolute; }
        #coverDiv4{
     
     
     width: 240px;
     height: 20px;
-    top: 10px;
-    left: 55px;
+    bottom: 204px;
+    right: 57px;
     position:absolute; }
