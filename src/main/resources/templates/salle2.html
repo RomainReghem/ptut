@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" type="text/css" th:href="@{/css/salles.css}" href="../static/css/salles.css"/>
     </head>
-    <body>
+    <body onload="move()">
         <th:block th:each="s:${salles}">
             <p th:if="${s.id}=='2'" th:text="'Nom de la salle : '+ ${s.nom}"></p>
         </th:block>
@@ -56,12 +56,71 @@ and open the template in the editor.
                         <td th:text="${ct.temperatureIndex}"></td>
                         <td>°C</td>
                         <td th:text="${ct.dateMesure}"></td>
-                        
+
                     </tr>
                 </th:block>
             </tbody>
         </table>
         <p th:text="${lastBruit}"></p>
         <p th:text="'Index de pénibilité : '+ ${index}"></p>
+
+        <div class="bardiv">
+            <div id="bar">test</div>
+        </div>
+        <p id="etat"></p>
+
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+
+            var index = /*[[${index}]]*/ 'default';
+            console.log(index);
+
+
+            /*]]>*/
+            
+            let elem = document.getElementById("bar");
+            let etat = document.getElementById("etat");
+            let width = 0;
+            let id;
+            function move() {    
+            whichColor();
+            id = setInterval(frame, 20);
+            }
+
+            function frame() {
+            if (width >= index*100/20) {
+            clearInterval(id);
+            }
+            else {
+            width++;
+            elem.style.width = width + '%';
+            elem.innerHTML = width*20/100 + '/20';
+            }
+            }
+
+            function whichColor(){
+            if (index == 20 || index == 19){
+            elem.style.backgroundColor = "#3a55c9";
+            etat.innerHTML = "Pénibilité : Très peu pénible. La salle est excellente"
+            }
+            else if(index>=15 && index<=18){
+            elem.style.backgroundColor = "#3ac9a0";
+            etat.innerHTML = "Pénibilité : Peu pénible. La salle est bonne"
+            }
+            else if(index>=11 && index<=14){
+            elem.style.backgroundColor = "#d1d12c";
+            etat.innerHTML = "Pénibilité : Assez pénible. La salle est moyenne"
+            }
+            else if(index>=7 && index<=10){
+            elem.style.backgroundColor = "#d18c2c";
+            etat.innerHTML = "Pénibilité : Pénible. La salle est mauvaise"
+            }
+            else if(index < 7){
+            elem.style.backgroundColor = "#db2e14";
+            etat.innerHTML = "Pénibilité : Très pénible. La salle est inadéquate"
+            }
+            }
+
+        </script>
     </body>
 </html>
