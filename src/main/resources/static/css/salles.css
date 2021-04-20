@@ -21,12 +21,13 @@ body{
     width:540px;
     border-radius:5px 5px 0 0;
     overflow:hidden;
+    
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
     
 }
 table {
     width: 100%;
-    border: 1px solid #000;
+    border: 1px solid #FF8C64;
 }
 th.type{
     width:50%
@@ -39,8 +40,8 @@ th.unite{
 }
 
 .content thead tr{
-    background-color:#E7F291;
-    color:#BED95F;
+    background-color:#FF8C64;
+    color:#7D6B7D;
     text-align:left;
     font-weight:bold;
 }
@@ -50,11 +51,11 @@ th.unite{
 }
 
 .content tbody tr{
-    border-bottom:1px solid #BED95F;
+    border-bottom:1px solid #FF8C64;
 }
 
 .content tbody tr:last-of-type{
-    border-bottom:5px solid #E7F291;
+    border-bottom:5px solid #FF8C64;
 }
 
 

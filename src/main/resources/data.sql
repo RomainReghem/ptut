@@ -15,28 +15,29 @@ INSERT INTO Salle(id, nom, p_index) VALUES
     (4, 'Salle4', 11),
     (5, 'Salle5', 19);
 
-INSERT INTO Capteur_Bruit(bruit_index, salle_bruit_id) VALUES 
-    (15, 3),
-    (17, 3),
-    (25, 2),
-    (12, 2),
-    (51, 4),
-    (55, 4);
+INSERT INTO Capteur_Bruit(bruit_index, salle_bruit_id, date_mesure) VALUES 
+    (45, 3, TO_DATE('2020-04-20 23:59:45', 'YYYY-MM-DD HH:MI:SS')),
+    (17, 3, TO_DATE('2020-04-20 21:55:40', 'YYYY-MM-DD HH:MI:SS')),
+    (18, 3, TO_DATE('2020-04-20 20:32:40', 'YYYY-MM-DD HH:MI:SS')),
+    (45, 2, TO_DATE('2020-04-20 23:59:45', 'YYYY-MM-DD HH:MI:SS')),
+    (12, 2, TO_DATE('2020-04-20 22:55:30', 'YYYY-MM-DD HH:MI:SS')),
+    (51, 4, TO_DATE('2020-04-20 23:59:45', 'YYYY-MM-DD HH:MI:SS')),
+    (55, 4, TO_DATE('2020-04-20 21:30:46', 'YYYY-MM-DD HH:MI:SS'));
 
-INSERT INTO Capteur_Humidite(humidite_index, salle_humidite_id) VALUES 
-    (15, 3),
-    (30, 2),
-    (31, 4),
-    (33, 4);
+INSERT INTO Capteur_Humidite(humidite_index, salle_humidite_id, date_mesure) VALUES 
+    (15, 3, TO_DATE('2020-04-20 23:59:45', 'YYYY-MM-DD HH:MI:SS')),
+    (32, 2, TO_DATE('2020-04-20 15:59:30', 'YYYY-MM-DD HH:MI:SS')),
+    (31, 4, TO_DATE('2020-04-20 13:40:45', 'YYYY-MM-DD HH:MI:SS')),
+    (33, 4, TO_DATE('2020-04-20 12:25:45', 'YYYY-MM-DD HH:MI:SS'));
 
-INSERT INTO Capteur_Temperature(temperature_index, salle_temperature_id) VALUES 
-    (20, 3),
-    (11, 2),
-    (20, 4);    
+INSERT INTO Capteur_Temperature(temperature_index, salle_temperature_id, date_mesure) VALUES 
+    (20, 3, TO_DATE('2020-04-20 23:59:45', 'YYYY-MM-DD HH:MI:SS')),
+    (19, 2, TO_DATE('2020-04-20 15:59:30', 'YYYY-MM-DD HH:MI:SS')),
+    (20, 4, TO_DATE('2020-04-20 13:40:45', 'YYYY-MM-DD HH:MI:SS'));    
 
-INSERT INTO Capteur_Lumiere(lumiere_index, salle_lumiere_id) VALUES 
-    (16, 3),
-    (13, 2),
-    (16, 4),
-    (11, 4);
+INSERT INTO Capteur_Lumiere(lumiere_index, salle_lumiere_id, date_mesure) VALUES 
+    (260, 3, TO_DATE('2020-04-20 23:59:45', 'YYYY-MM-DD HH:MI:SS')),
+    (450, 2, TO_DATE('2020-04-20 13:40:45', 'YYYY-MM-DD HH:MI:SS')),
+    (370, 4, TO_DATE('2020-04-20 21:30:46', 'YYYY-MM-DD HH:MI:SS')),
+    (765, 4, TO_DATE('2020-04-20 14:15:45', 'YYYY-MM-DD HH:MI:SS'));
 
