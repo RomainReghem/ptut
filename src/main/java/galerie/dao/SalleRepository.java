@@ -18,5 +18,17 @@ public interface SalleRepository extends JpaRepository<Salle, Integer> {
 
     @Query(value = "SELECT temperature_index FROM capteur_temperature WHERE salle_temperature_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
     int lastTemp(Integer id);
+    
+    @Query(value = "SELECT id FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
+    int lastBruitID(Integer id);
+
+    @Query(value = "SELECT id FROM capteur_humidite WHERE salle_humidite_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
+    int lastHumID(Integer id);
+
+    @Query(value = "SELECT id FROM capteur_lumiere WHERE salle_lumiere_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
+    int lastLumID(Integer id);
+
+    @Query(value = "SELECT id FROM capteur_temperature WHERE salle_temperature_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
+    int lastTempID(Integer id);
 
 }

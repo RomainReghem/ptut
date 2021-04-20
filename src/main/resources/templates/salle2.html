@@ -15,42 +15,48 @@ and open the template in the editor.
         <th:block th:each="s:${salles}">
             <p th:if="${s.id}=='2'" th:text="'Nom de la salle : '+ ${s.nom}"></p>
         </th:block>
-        <h2>Liste des capteurs de cette salle :</h2>
+        <h2>Dernières mesures enregistrées dans cette salle :</h2>
         <table class="content">
             <thead>
                 <tr>
                     <th class="type">Type</th>
                     <th class="valeur">Valeur</th>
                     <th class="unite">Unité</th>
+                    <th class="date">Date & Heure</th>
                 </tr>
             </thead>
             <tbody id="listeCapteurs">
-                <th:block th:each="cb:${cBruit}" th:if="${cb.SalleBruit.id}=='2'">
+                <th:block th:each="cb:${cBruit}" th:if="${cb.id}==${lastBruitID} and ${cb.SalleBruit.id}=='2'">
                     <tr>
                         <td>Bruit</td>
                         <td th:text="${cb.bruitIndex}"></td>
-                        <td>db</td>                 
+                        <td>db</td> 
+                        <td th:text="${cb.dateMesure}"></td>
                     </tr>
                 </th:block>
-                <th:block th:each="ch:${cHum}" th:if="${ch.SalleHumidite.id}=='2'">
+                <th:block th:each="ch:${cHum}" th:if="${ch.id}==${lastHumID} and ${ch.SalleHumidite.id}=='2'">
                     <tr>
                         <td>Humidité</td>
                         <td th:text="${ch.humiditeIndex}"></td>
-                        <td>g/m3</td>                 
+                        <td>g/m3</td>   
+                        <td th:text="${ch.dateMesure}"></td>
                     </tr>
                 </th:block>
-                <th:block th:each="cl:${cLum}" th:if="${cl.SalleLumiere.id}=='2'">
+                <th:block th:each="cl:${cLum}" th:if="${cl.id}==${lastLumID} and ${cl.SalleLumiere.id}=='2'">
                     <tr>
                         <td>Lumière</td>
                         <td th:text="${cl.lumiereIndex}"></td>
-                        <td>lux</td>                 
+                        <td>lux</td>
+                        <td th:text="${cl.dateMesure}"></td>
                     </tr>
                 </th:block>
-                <th:block th:each="ct:${cTemp}" th:if="${ct.SalleTemperature.id}=='2'">
+                <th:block th:each="ct:${cTemp}" th:if="${ct.id}==${lastTempID} and ${ct.SalleTemperature.id}=='2'">
                     <tr>
                         <td>Température</td>
                         <td th:text="${ct.temperatureIndex}"></td>
-                        <td>°C</td>                 
+                        <td>°C</td>
+                        <td th:text="${ct.dateMesure}"></td>
+                        
                     </tr>
                 </th:block>
             </tbody>

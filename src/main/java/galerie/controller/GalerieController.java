@@ -68,7 +68,10 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
-        model.addAttribute("lastBruit", dao.lastBruit(2));
+        model.addAttribute("lastBruitID", dao.lastBruitID(2));
+        model.addAttribute("lastHumID", dao.lastHumID(2));
+        model.addAttribute("lastLumID", dao.lastLumID(2));
+        model.addAttribute("lastTempID", dao.lastTempID(2));        
         model.addAttribute("index", calculPenibilite(2));
         return "salle2";
     }
@@ -80,6 +83,10 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("lastBruitID", dao.lastBruitID(3));
+        model.addAttribute("lastHumID", dao.lastHumID(3));
+        model.addAttribute("lastLumID", dao.lastLumID(3));
+        model.addAttribute("lastTempID", dao.lastTempID(3));
         model.addAttribute("index", calculPenibilite(3));
         return "salle3";
     }
@@ -91,6 +98,10 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("lastBruitID", dao.lastBruitID(4));
+        model.addAttribute("lastHumID", dao.lastHumID(4));
+        model.addAttribute("lastLumID", dao.lastLumID(4));
+        model.addAttribute("lastTempID", dao.lastTempID(4));
         model.addAttribute("index", calculPenibilite(4));
         return "salle4";
     }

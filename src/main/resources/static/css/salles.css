@@ -30,13 +30,13 @@ table {
     border: 1px solid #FF8C64;
 }
 th.type{
-    width:50%
+    width:35%
 }
 th.valeur {
-    width: 25%    
+    width: 15%    
 }
 th.unite{
-    width:25%;    
+    width:15%;    
 }
 
 .content thead tr{
