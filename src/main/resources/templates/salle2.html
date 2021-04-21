@@ -72,7 +72,8 @@ and open the template in the editor.
             <div id="bar">test</div>
         </div>
         <p id="etat"></p>
-        <div id="template"></div>
+        <button onclick="showHide()">Le tableau de l'indice de pénibilité</button>
+        <div id="tableau" style="display: none;"></div>
         <div id="temperature"></div>
         <div id="coverDiv1">Temperature (°C) = <span id="TSpan"></span> </div>
         <div id="bruit"></div>
@@ -597,7 +598,15 @@ gauge.background().fill(
   gauge.draw();
 });
   
-  
+  function showHide(){
+  var x = document.getElementById("tableau");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+}
         </script>
     </body>
 </html>
