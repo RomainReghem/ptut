@@ -81,61 +81,64 @@ th.unite{
 
 #bruit {
 
-  width: 298px;
-    height: 278px;
-        right: 30px;
-        bottom: -91px;
-        position:absolute; 
-}
-#lightGauge {
-   width: 298px;
-    height: 278px;
-        left: 30px;
-        bottom: -460px;
-        position:absolute; 
-}
- #humidity {
     width: 298px;
     height: 278px;
-        right: 30px;
-        bottom: -460px;
-        position:absolute; 
+    left: 647px;
+    bottom: -91px;
+    position: absolute;
+}
+#lightGauge {
+       width: 298px;
+    height: 278px;
+    left: 339px;
+    bottom: -91px;
+    position: absolute;
+}
+ #humidity {
+    width: 603px;
+    height: 278px;
+    left: 340px;
+    bottom: -381px;
+    position: absolute; 
      
     }
       #temperature {
-width: 298px;
-    height: 278px;
-        left: 30px;
-        bottom: -91px;
-        position:absolute; 
+    width: 298px;
+    height: 580px;
+    left: 30px;
+    bottom: -392px;
+    position: absolute;
+
         
     }
     #coverDiv1{
+    background-color: #bbd8c0;
     
-    
-    width: 240px;
+    width: 262px;
     height: 20px;
-    bottom: 204px;
+    bottom: -386px;
     left: 57px;
-    position:absolute; }
+    position: absolute; }
      #coverDiv2{
-         
-    width: 240px;
+         background-color: #bbd8c0;
+         width: 557px;
     height: 20px;
-    bottom: -158px;
-    right: 57px;
-    position:absolute; }
+    bottom: -375px;
+    left: 377px;
+    position: absolute;}
       #coverDiv3{
-    width: 240px;
+          background-color: #bbd8c0;
+   width: 271px;
     height: 20px;
-    bottom: -158px;
-    left: 57px;
-    position:absolute; }
+    bottom: -85px;
+    left: 357px;
+    position: absolute; }
        #coverDiv4{
+    background-color: #bbd8c0;
     
-    
-    width: 240px;
+        width: 252px;
     height: 20px;
-    bottom: 204px;
-    right: 57px;
-    position:absolute; }
+    bottom: -85px;
+    left: 684px;
+    position: absolute; }
+    

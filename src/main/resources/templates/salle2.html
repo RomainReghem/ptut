@@ -42,7 +42,7 @@ and open the template in the editor.
                     <tr>
                         <td>Humidité</td>
                         <td th:text="${ch.humiditeIndex}"></td>
-                        <td>g/m3</td>   
+                        <td>% HR</td>   
                         <td th:text="${ch.dateMesure}"></td>
                     </tr>
                 </th:block>
@@ -72,10 +72,11 @@ and open the template in the editor.
             <div id="bar">test</div>
         </div>
         <p id="etat"></p>
+        <div id="template"></div>
         <div id="temperature"></div>
         <div id="coverDiv1">Temperature (°C) = <span id="TSpan"></span> </div>
         <div id="bruit"></div>
-         <div id="coverDiv4">Bruit de salle = <span id="BSpan"></span> <br></div>
+         <div id="coverDiv4">Bruit de salle(dB) = <span id="BSpan"></span> <br></div>
          <div id="lightGauge"></div>
          <div id="coverDiv3">éclairage de salle (LUX) = <span id="LSpan"></span> <br></div>
          <div id="humidity"></div>
@@ -148,7 +149,16 @@ and open the template in the editor.
   
   anychart.onDocumentReady(function () {
   let gauge = anychart.gauges.linear();
-  gauge.background().fill("#b8d1bc");
+  gauge.padding(40,0);
+  var background = gauge.background();
+background.stroke("black");
+background.cornerType("round");
+background.corners(20, 20, 20, 20);
+  
+gauge.background().fill(
+  ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+ 
+);
 
   // Create and return simple linear gauge
   function drawLinearGauge(value) {
@@ -246,7 +256,7 @@ and open the template in the editor.
   var gaugeRPM = anychart.gauges.circular();
 
 
- 
+ gaugeRPM.padding(40)
 
   gaugeRPM.label(2)
       .text('dB')
@@ -278,9 +288,15 @@ and open the template in the editor.
   }
 
   createMarker()
-  gaugeRPM.background().fill("#b8d1bc");
-  gaugeRPM
-    .fill("#b8d1bc")
+  var background = gaugeRPM.background();
+background.stroke("black");
+background.cornerType("round");
+background.corners(20, 20, 20, 20);
+  
+gaugeRPM.background().fill(
+  ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+ 
+);
 //data stream
 
 //  let bruitValue = document.getElementById('bruitValue').textContent
@@ -422,9 +438,15 @@ LSpan.innerHTML = valueInLux;
     
   };
   s();
-   gauge.background().fill("#b8d1bc");
-  gauge
-    .fill("#b8d1bc")
+  var background = gauge.background();
+background.stroke("black");
+background.cornerType("round");
+background.corners(20, 20, 20, 20);
+  
+gauge.background().fill(
+  ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+ 
+);
       
   
     // set container id for the chart
@@ -442,9 +464,18 @@ LSpan.innerHTML = valueInLux;
   
   anychart.onDocumentReady(function () {
   let gauge = anychart.gauges.circular();
-gauge.background().fill("#b8d1bc");
+//gauge.background().fill("#b8d1bc");
+var background = gauge.background();
+background.stroke("black");
+background.cornerType("round");
+background.corners(20, 20, 20, 20);
+  
+gauge.background().fill(
+  ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+ 
+);
   gauge
-    .fill("#b8d1bc")
+    .fill("none")
     .stroke(null)
     .startAngle(270)
     .sweepAngle(180);
@@ -538,7 +569,7 @@ gauge.background().fill("#b8d1bc");
     .label(1)
     .text("Mauvais")
     .fontColor("grey")
-    .fontSize(10)
+    .fontSize(13)
     .offsetY("75%")
     .offsetX(25)
     .anchor("center");
@@ -547,7 +578,7 @@ gauge.background().fill("#b8d1bc");
     .label(2)
     .text("Bien")
     .fontColor("grey")
-    .fontSize(10)
+    .fontSize(13)
     .offsetY("68%")
     .offsetX(90)
     .anchor("center");
@@ -556,7 +587,7 @@ gauge.background().fill("#b8d1bc");
     .label(3)
     .text("Mauvais")
     .fontColor("grey")
-    .fontSize(10)
+    .fontSize(13)
     .offsetY("75%")
     .offsetX(155)
     .anchor("center");
