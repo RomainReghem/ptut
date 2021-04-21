@@ -56,7 +56,20 @@ public class GalerieController {
 
     @GetMapping(path = "salle")
     public String afficheLaSalle(Model model) {
-        model.addAttribute("galeries", dao.findAll());
+        model.addAttribute("salles", dao.findAll());
+        model.addAttribute("cBruit", cBruit.findAll());
+        model.addAttribute("cHum", cHum.findAll());
+        model.addAttribute("lastHumValue", dao.lastHum(1));
+        model.addAttribute("lastTempValue", dao.lastTemp(1));
+        model.addAttribute("lastBruitValue", dao.lastBruit(1));
+        model.addAttribute("lastLumValue", dao.lastLum(1));
+        model.addAttribute("cLum", cLum.findAll());
+        model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("lastBruitID", dao.lastBruitID(1));
+        model.addAttribute("lastHumID", dao.lastHumID(1));
+        model.addAttribute("lastLumID", dao.lastLumID(1));
+        model.addAttribute("lastTempID", dao.lastTempID(1));        
+        model.addAttribute("index", calculPenibilite(1));
         return "salle";
 
     }

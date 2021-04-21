@@ -21,9 +21,9 @@ body{
     width:540px;
     border-radius:5px 5px 0 0;
     overflow:hidden;
-    
+
     box-shadow: 0 0 20px rgba(0,0,0,0.15);
-    
+
 }
 table {
     width: 100%;
@@ -130,4 +130,41 @@ th.unite{
     margin-right:auto;
     width:700px;
     height:300px;
+}
+#coverDiv1{
+    background-color:#bbd8c0;
+    width: 192px;
+    text-align: center;
+    position: relative;
+    left: 10px;
+    bottom: 23px;
+    font-family: monospace;
+}
+#coverDiv2{
+    background-color:#bbd8c0;
+    width: 457px;
+    text-align: center;
+    position: relative;
+    left: 10px;
+    bottom: 21px;
+    font-family: monospace;
+}
+#coverDiv3{
+    background-color:#bbd8c0;
+    width: 213px;
+    text-align: center;
+    position: relative;
+    left: 11px;
+    bottom: 19px;
+    font-family: monospace;
+    font-size: 11px;
+}
+#coverDiv4{
+    background-color:#bbd8c0;
+    width: 214px;
+    text-align: center;
+    position: relative;
+    left: 10px;
+    bottom: 21px;
+    font-family: monospace;
 }
