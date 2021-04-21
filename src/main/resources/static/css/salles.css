@@ -40,7 +40,7 @@ th.unite{
 }
 
 .content thead tr{
-    background-color:#FF8C64;
+    background-color: '#dbe9ff','#e3ffe7';
     color:#7D6B7D;
     text-align:left;
     font-weight:bold;
@@ -132,16 +132,18 @@ th.unite{
     height:300px;
 }
 #coverDiv1{
-    background-color:#bbd8c0;
+    background: linear-gradient(90deg, #d9e7ff 0%, #e3ffe7 100%);
+    
     width: 192px;
     text-align: center;
     position: relative;
     left: 10px;
-    bottom: 23px;
+    bottom: 21px;
     font-family: monospace;
 }
+
 #coverDiv2{
-    background-color:#bbd8c0;
+    background: linear-gradient(90deg, #d9e7ff 0%, #e3ffe7 100%);
     width: 457px;
     text-align: center;
     position: relative;
@@ -150,7 +152,7 @@ th.unite{
     font-family: monospace;
 }
 #coverDiv3{
-    background-color:#bbd8c0;
+    background: linear-gradient(90deg, #d9e7ff 0%, #e3ffe7 100%);
     width: 213px;
     text-align: center;
     position: relative;
@@ -160,7 +162,7 @@ th.unite{
     font-size: 11px;
 }
 #coverDiv4{
-    background-color:#bbd8c0;
+    background: linear-gradient(90deg, #d9e7ff 0%, #e3ffe7 100%);
     width: 214px;
     text-align: center;
     position: relative;
@@ -169,7 +171,9 @@ th.unite{
     font-family: monospace;
 }
 #graph {
-    width: 100%;
+    width: 97%;
     height: 325px;
+    margin-left: auto;
+    margin-right: auto;
 
 }

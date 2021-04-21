@@ -59,6 +59,12 @@ public class GalerieController {
         model.addAttribute("salles", dao.findAll());
         model.addAttribute("cBruit", cBruit.findAll());
         model.addAttribute("cHum", cHum.findAll());
+        model.addAttribute("allBruitValues", dao.allBruit(1));
+        model.addAttribute("allBruitDates", dao.allBruitDate(1));
+        
+        model.addAttribute("allTempValues", dao.allTemp(1));
+        model.addAttribute("allLumValues", dao.allLum(1));
+        model.addAttribute("allHumValues", dao.allHum(1));
         model.addAttribute("lastHumValue", dao.lastHum(1));
         model.addAttribute("lastTempValue", dao.lastTemp(1));
         model.addAttribute("lastBruitValue", dao.lastBruit(1));
@@ -84,6 +90,11 @@ public class GalerieController {
         model.addAttribute("lastBruitValue", dao.lastBruit(2));
         model.addAttribute("allBruitValues", dao.allBruit(2));
         model.addAttribute("allBruitDates", dao.allBruitDate(2));
+        
+        model.addAttribute("allTempValues", dao.allTemp(2));
+        model.addAttribute("allLumValues", dao.allLum(2));
+        model.addAttribute("allHumValues", dao.allHum(2));
+        
         model.addAttribute("lastLumValue", dao.lastLum(2));
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
@@ -102,6 +113,12 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("allBruitValues", dao.allBruit(3));
+        model.addAttribute("allBruitDates", dao.allBruitDate(3));
+        
+        model.addAttribute("allTempValues", dao.allTemp(3));
+        model.addAttribute("allLumValues", dao.allLum(3));
+        model.addAttribute("allHumValues", dao.allHum(3));
         model.addAttribute("lastHumValue", dao.lastHum(3));
         model.addAttribute("lastTempValue", dao.lastTemp(3));
         model.addAttribute("lastBruitValue", dao.lastBruit(3));
@@ -121,6 +138,12 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("allBruitValues", dao.allBruit(4));
+        model.addAttribute("allBruitDates", dao.allBruitDate(4));
+        
+        model.addAttribute("allTempValues", dao.allTemp(4));
+        model.addAttribute("allLumValues", dao.allLum(4));
+        model.addAttribute("allHumValues", dao.allHum(4));
         model.addAttribute("lastHumValue", dao.lastHum(4));
         model.addAttribute("lastTempValue", dao.lastTemp(4));
         model.addAttribute("lastBruitValue", dao.lastBruit(4));

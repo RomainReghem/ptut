@@ -71,7 +71,7 @@ and open the template in the editor.
             <div id="bar">test</div>
         </div>
         <p id="etat"></p>
-        <button onclick="showHide()">Voir le tableau de l'indice de pénibilité</button><br/>
+        <button onclick="showHide('tableau')">Voir le tableau de l'indice de pénibilité</button><br/>
         <div id="tableau"></div><br/>
         <div id="graphcontainer">
             <div id="flex1a">
@@ -95,6 +95,7 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
+        <div id="graph"></div>
         <script th:inline="javascript">
 
             /*<![CDATA[*/
@@ -105,13 +106,45 @@ and open the template in the editor.
             let valueInDB = /*[[${lastBruitValue}]]*/ 'default';
             let valueInLux = /*[[${lastLumValue}]]*/ 'default';
             let valueInHR = /*[[${lastHumValue}]]*/ 'default';
+            let allB = /*[[${allBruitValues}]]*/ 'default';
+            
+            let allT = /*[[${allTempValues}]]*/ 'default';
+            let allL = /*[[${allLumValues}]]*/ 'default';
+            let allH = /*[[${allHumValues}]]*/ 'default';
+            
+            let allBD = /*[[${allBruitDates}]]*/ 'default';
+            
+            
             
 
 
-
-
-
             /*]]>*/
+ 
+            
+            
+           
+            
+            
+          var dataChart = [
+  [],
+  [],
+  [],
+  [],
+  []
+  ];
+
+
+for (i = 0; i < dataChart.length; i++) {
+  dataChart[i].push(allBD[i]);
+  dataChart[i].push(allB[i]);
+  dataChart[i].push(allT[i]);
+  dataChart[i].push(allH[i]);
+  dataChart[i].push(allL[i]);
+  
+}
+
+console.log(dataChart);
+
 
 
             let elem = document.getElementById("bar");
@@ -167,9 +200,10 @@ and open the template in the editor.
                 background.corners(20, 20, 20, 20);
 
                 gauge.background().fill(
-                        ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+                        ['#dbe9ff','#e3ffe7']
 
                         );
+               
 
                 // Create and return simple linear gauge
                 function drawLinearGauge(value) {
@@ -308,7 +342,7 @@ and open the template in the editor.
             background.corners(20, 20, 20, 20);
 
             gaugeRPM.background().fill(
-                    ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+                    ['#dbe9ff','#e3ffe7']
 
                     );
             //data stream
@@ -460,7 +494,7 @@ and open the template in the editor.
                 background.corners(20, 20, 20, 20);
 
                 gauge.background().fill(
-                        ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+                        ['#dbe9ff','#e3ffe7']
 
                         );
 
@@ -487,7 +521,7 @@ and open the template in the editor.
                 background.corners(20, 20, 20, 20);
 
                 gauge.background().fill(
-                        ["#bbd8c0", "#bbd8c0", "#bbd8c0"]
+                        ['#dbe9ff','#e3ffe7']
 
                         );
                 gauge
@@ -614,8 +648,8 @@ and open the template in the editor.
                 gauge.draw();
             });
 
-            function showHide() {
-                var x = document.getElementById("tableau");
+            function showHide(t) {
+                var x = document.getElementById(`${t}`);
                 if (x.style.display === "block") {
                     x.style.display = "none";
                 } else {
@@ -623,6 +657,56 @@ and open the template in the editor.
                 }
 
             }
+           
+            
+            //###############GRAPH##################
+            
+            anychart.onDocumentReady(function () {
+
+    // create data
+    
+
+    // create a chart
+    var chart = anychart.line();
+    
+    chart.animation(true);
+
+    // create a spline series and set the data
+    var series = anychart.data.mapAsTable(dataChart);
+    for (var i in series) {
+        chart.spline(series[i]);
+    }
+
+
+
+
+    // set the titles of the axes
+    var xAxis = chart.xAxis();
+    xAxis.title("Date/Time");
+    var yAxis = chart.yAxis();
+    yAxis.title("Value");
+    
+    
+   
+            var background = chart.background();
+            background.stroke("black");
+            background.cornerType("round");
+            background.corners(20, 20, 20, 20);
+
+            chart.background().fill(['#dbe9ff','#e3ffe7']);
+            
+            chart.legend(true);
+            chart.getSeriesAt(0).name("Bruit");
+            chart.getSeriesAt(1).name("Temperature");
+            chart.getSeriesAt(2).name("Humidité");
+            chart.getSeriesAt(3).name("Éclairage");
+
+    // set the container id
+    chart.container("graph");
+
+    // initiate drawing the chart
+    chart.draw();
+});
         </script>
     </body>
 </html>
