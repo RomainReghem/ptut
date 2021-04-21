@@ -72,86 +72,62 @@ th.unite{
     background-color:aquamarine;
 }
 
+
 #etat{
     margin-left: auto;
     margin-right:auto;
     width: 540px;
 }
-
-
-#bruit {
-
-    width: 298px;
-    height: 278px;
-    left: 647px;
-    bottom: -91px;
-    position: absolute;
+#graphcontainer{
+    margin-left: auto;
+    margin-right: auto;
+    width:700px;
+    height:400px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
 }
-#lightGauge {
-       width: 298px;
-    height: 278px;
-    left: 339px;
-    bottom: -91px;
-    position: absolute;
-}
- #humidity {
-    width: 603px;
-    height: 278px;
-    left: 340px;
-    bottom: -381px;
-    position: absolute; 
-     
-    }
-      #temperature {
-    width: 298px;
-    height: 580px;
-    left: 30px;
-    bottom: -392px;
-    position: absolute;
 
-        
-    }
-    #coverDiv1{
-    background-color: #bbd8c0;
-    
-    width: 262px;
-    height: 20px;
-    bottom: -386px;
-    left: 57px;
-    position: absolute; }
-     #coverDiv2{
-         background-color: #bbd8c0;
-         width: 557px;
-    height: 20px;
-    bottom: -375px;
-    left: 377px;
-    position: absolute;}
-      #coverDiv3{
-          background-color: #bbd8c0;
-   width: 271px;
-    height: 20px;
-    bottom: -85px;
-    left: 357px;
-    position: absolute; }
-       #coverDiv4{
-    background-color: #bbd8c0;
-    
-        width: 252px;
-    height: 20px;
-    bottom: -85px;
-    left: 684px;
-    position: absolute; }
-       #tableau{
+#flex1a{
+    width:30%;
+    height:100%;
+}
+#flex1b{
+    width:68%;
+    display: flex;
+    flex-direction: column;
+}
+#flex2a{
+    display: flex;
+    height:50%;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#flex3a{
+    width:49%;
+}
+#flex3b{
+    width:49%;
+}
+#flex2b{
+    height:48%;
+}
+
+#humidity, #lightGauge, #bruit{
+    height:90%;
+}
+#temperature{
+    height:94%;
+}
+
+#tableau{
+    display:none;
     background-image: url('/img/tableau.png');
-  background-position: center;
-  background-size:contain;
-  background-repeat: no-repeat;
-    border-radius: 35px;
-    
-     width: 63%;
-    height: 36%; 
-    right: 194px;
-    top: 86px;
-    position: absolute;
+    background-position: center;
+    background-size:contain;
+    background-repeat: no-repeat;
+    margin-left: auto;
+    margin-right:auto;
+    width:700px;
+    height:300px;
 }
-  
