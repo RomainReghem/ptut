@@ -87,6 +87,10 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("lastHumValue", dao.lastHum(3));
+        model.addAttribute("lastTempValue", dao.lastTemp(3));
+        model.addAttribute("lastBruitValue", dao.lastBruit(3));
+        model.addAttribute("lastLumValue", dao.lastLum(3));
         model.addAttribute("lastBruitID", dao.lastBruitID(3));
         model.addAttribute("lastHumID", dao.lastHumID(3));
         model.addAttribute("lastLumID", dao.lastLumID(3));
@@ -102,6 +106,10 @@ public class GalerieController {
         model.addAttribute("cHum", cHum.findAll());
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
+        model.addAttribute("lastHumValue", dao.lastHum(4));
+        model.addAttribute("lastTempValue", dao.lastTemp(4));
+        model.addAttribute("lastBruitValue", dao.lastBruit(4));
+        model.addAttribute("lastLumValue", dao.lastLum(4));
         model.addAttribute("lastBruitID", dao.lastBruitID(4));
         model.addAttribute("lastHumID", dao.lastHumID(4));
         model.addAttribute("lastLumID", dao.lastLumID(4));
