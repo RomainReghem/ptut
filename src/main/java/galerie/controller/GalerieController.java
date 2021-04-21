@@ -82,6 +82,8 @@ public class GalerieController {
         model.addAttribute("lastHumValue", dao.lastHum(2));
         model.addAttribute("lastTempValue", dao.lastTemp(2));
         model.addAttribute("lastBruitValue", dao.lastBruit(2));
+        model.addAttribute("allBruitValues", dao.allBruit(2));
+        model.addAttribute("allBruitDates", dao.allBruitDate(2));
         model.addAttribute("lastLumValue", dao.lastLum(2));
         model.addAttribute("cLum", cLum.findAll());
         model.addAttribute("cTemp", cTemp.findAll());
