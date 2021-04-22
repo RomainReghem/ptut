@@ -16,8 +16,9 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" th:href="@{/css/salles.css}" href="../static/css/salles.css"/>
     </head>
     <body onload="move()">
+        <h1> Salle 4</h1>
         <th:block th:each="s:${salles}">
-            <p th:if="${s.id}=='4'" th:text="'Nom de la salle : '+ ${s.nom}"></p>
+            
         </th:block>
         <h2>Liste des capteurs de cette salle :</h2>
         <table class="content">
