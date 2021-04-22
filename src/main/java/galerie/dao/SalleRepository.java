@@ -10,27 +10,27 @@ public interface SalleRepository extends JpaRepository<Salle, Integer> {
     @Query(value = "SELECT bruit_index FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
     int lastBruit(Integer id);
     
-    @Query(value = "SELECT bruit_index FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure ASC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT bruit_index FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure DESC LIMIT 5", nativeQuery = true)
     int[] allBruit(Integer id);
-    @Query(value = "SELECT date_mesure FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure ASC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT date_mesure FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure DESC LIMIT 5", nativeQuery = true)
     String[] allBruitDate(Integer id);
 
     @Query(value = "SELECT humidite_index FROM capteur_humidite WHERE salle_humidite_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
     int lastHum(Integer id);
     
-    @Query(value = "SELECT humidite_index FROM capteur_humidite WHERE salle_humidite_id = :id ORDER BY date_mesure ASC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT humidite_index FROM capteur_humidite WHERE salle_humidite_id = :id ORDER BY date_mesure DESC LIMIT 5", nativeQuery = true)
     int[] allHum(Integer id);
 
     @Query(value = "SELECT lumiere_index FROM capteur_lumiere WHERE salle_lumiere_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
     int lastLum(Integer id);
     
-    @Query(value = "SELECT lumiere_index FROM capteur_lumiere WHERE salle_lumiere_id = :id ORDER BY date_mesure ASC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT lumiere_index FROM capteur_lumiere WHERE salle_lumiere_id = :id ORDER BY date_mesure DESC LIMIT 5", nativeQuery = true)
     int[] allLum(Integer id);
 
     @Query(value = "SELECT temperature_index FROM capteur_temperature WHERE salle_temperature_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
     int lastTemp(Integer id);
     
-    @Query(value = "SELECT temperature_index FROM capteur_temperature WHERE salle_temperature_id = :id ORDER BY date_mesure ASC LIMIT 5", nativeQuery = true)
+    @Query(value = "SELECT temperature_index FROM capteur_temperature WHERE salle_temperature_id = :id ORDER BY date_mesure DESC LIMIT 5", nativeQuery = true)
     int[] allTemp(Integer id);
     
     @Query(value = "SELECT id FROM capteur_bruit WHERE salle_bruit_id = :id ORDER BY date_mesure DESC LIMIT 1", nativeQuery = true)
